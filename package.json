@@ -9,6 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "chart.js": "^2.7.2",
+    "csv": "^3.0.0",
+    "csv-parse": "^2.2.0",
+    "dataframe-js": "^1.2.7",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "moment": "^2.22.0",
+    "nodemon": "^1.17.3"
   }
 }
