@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Global Economic Dashboard</title>
+        {{> variables }}
+    <link href="./CSS/style.css" rel="stylesheet" type="text/css"> 
+    </head>
+    <body>
+        <header>
+        <h1>Welcome to Global Economic Dashboard</h1>
+        <span id="out"></span>
+        <input id="csv" type="file" onchange="onChooseFile()" multiple /> <label for="csv" class="file-upload">Choose files</label>
+        <button onclick="onAddFiles()"> ADD files </button>
+        <button onclick="viewData()"> View Table </button>
+        <button> View Charts </button>
+    </header>        
+        <div class="leftNav">
+            <ul>
+                <li>option1</li>
+                <li>option2</li>
+                <li>option3</li>
+                <li>option4</li>
+                <li>option4</li>
+                <li>option4</li>
+                <li>option4</li>
+                <li>option4</li>
+                <li>option4</li>
+            </ul>
+        </div>
+        <div class="tableContainer">
+            <table id="myTable">
+            </table>
+        </div>
+
+        
+      
+        
+    </body>
+    <script src="./JS/variables.js" type="text/javascript"></script> 
+    <script src="./JS/loadHeader.js" type="text/javascript"></script>    
+    <script src="./JS/ReadFile.js" type="text/javascript"></script>           
+    <script src="https://cdn.rawgit.com/Gmousse/dataframe-js/master/dist/dataframe-min.js"></script>
+</html>

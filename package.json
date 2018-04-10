@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "chart.js": "^2.7.2",
+    "cors": "^2.8.4",
     "csv": "^3.0.0",
     "csv-parse": "^2.2.0",
     "dataframe-js": "^1.2.7",
+    "ejs": "^2.5.8",
     "express": "^4.16.3",
     "hbs": "^4.0.1",
     "moment": "^2.22.0",
