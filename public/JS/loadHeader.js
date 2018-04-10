@@ -8,7 +8,9 @@ var data = fetch('./CSV/header.csv')
     document.getElementById("myTable").appendChild(thead);  
     for(var i=0;i<header.length;i++){
         var th = document.createElement('th');
-        th.appendChild(document.createTextNode(header[i]));
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(header[i]));
+        th.appendChild(td);
         tr.appendChild(th);
         th.setAttribute("nowrap","nowrap");        
     }

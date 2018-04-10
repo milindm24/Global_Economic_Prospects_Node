@@ -28,6 +28,8 @@
 
 table{
     border-collapse: collapse;
+    /* table-layout: auto;
+    width: 100%; */
     /* table-layout: fixed; */
 }
 
@@ -46,12 +48,14 @@ header h1{
     transform: translateX(-30%);
 }
 
-th,td {
+td {
+    text-align: center;
     padding: 10px;
     font-weight: normal;
-    width: auto;
+    /* width: 100%; */
     border: 1px solid white;
 }
+
 
 
 button{
@@ -99,10 +103,28 @@ table tr:nth-child(odd){
 }
 
 thead tr:first-child{
-    /* width: 500px; */
+    /* width: auto; */
 	overflow: auto;
 	color: #fff;
     background: rgba(29,150,178,1);
     font-size: 16px;
     text-align: center;
+    /* position: fixed; */
+}
+
+th td{
+    display: inline-block; 
+    border: none;       
+    /* width: 300px; */
+} 
+
+th{
+    margin:0;
+    padding:0;
+    border:0;
+    border: 1px solid white;    
+}
+
+tr:nth-child(3) td{
+    
 }

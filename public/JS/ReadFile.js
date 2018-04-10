@@ -14,7 +14,10 @@ onAddFiles = () => {
         if (i < fileInput.length ) {
             reader.addEventListener("load", () => {         
                 outarray.push({ name: fileInput[i].name, data: reader.result });
-                viewOutput += reader.result;
+                if (i<fileInput.length-1)
+                viewOutput += reader.result + "\n";
+                else
+                viewOutput += reader.result;                
         }, false);
             reader.readAsBinaryString(fileInput[i]);
             output.innerHTML += `${fileInput[i].name} Added ` ;            
@@ -55,6 +58,7 @@ onAddFiles = () => {
 
 viewData = ()=>{
     if (viewOutput !== ""){
+        console.log(viewOutput);
         var splitted = viewOutput.split("\n");
         let splittedChildComma = [];
         splitted.forEach((splittedChild)=>{
@@ -72,6 +76,7 @@ viewData = ()=>{
             td.setAttribute("nowrap","nowrap");                
         }
     }
+    // document.getElementById("myTable").tHead.style.position = "fixed";
 }else {
     output.innerHTML = "Please select other files";
 }
