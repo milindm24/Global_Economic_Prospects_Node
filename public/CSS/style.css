@@ -9,7 +9,7 @@
     height: 80vh;
     margin-right:0;
     margin-left: auto;
-    
+    position: relative;    
 }
 
 .leftNav{
@@ -20,8 +20,14 @@
     width: 15%;
     height: 100vh;
     z-index: 3;
-    background: linear-gradient(325deg,rgb(39,107,130),rgb(49,84,129));
+    background: linear-gradient(325deg,#2e353d,#333b44);
     color: white;
+    overflow-y: scroll;
+}
+
+.leftNav::-webkit-scrollbar{
+    width: 0px;  /* remove scrollbar space */
+    display: none;  /* optional: just make scrollbar invisible */
 }
 
 
@@ -103,28 +109,73 @@ table tr:nth-child(odd){
 }
 
 thead tr:first-child{
-    /* width: auto; */
 	overflow: auto;
 	color: #fff;
-    background: rgba(29,150,178,1);
+    /* background: rgba(29,150,178,1); */
+    background: #393f46;
     font-size: 16px;
     text-align: center;
-    /* position: fixed; */
+    position: sticky;  
+    position: -webkit-sticky;
+    top: 0;
 }
 
 th td{
+    margin: 0;
+    z-index: 3;
     display: inline-block; 
-    border: none;       
-    /* width: 300px; */
+    border: 1px solid white;
+    border-right: none;
+    width: 100%;    
+    /* border: none;   */
 } 
 
 th{
     margin:0;
-    padding:0;
+    padding:0 10px 0 0;
+    /* padding-left: 0; */
     border:0;
     border: 1px solid white;    
 }
 
-tr:nth-child(3) td{
-    
+.mainUL{
+    list-style-type: none;
+    display: inline;
+    top:25vh;
+    position: relative;
 }
+
+.mainUL li{
+    display: block;
+    background-color: #3a424b;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.mainUL li:first-child{
+    border-top: 1px solid black;
+}
+
+
+.arrow{
+    position: absolute;
+    display: inline-block;
+    right: 30px;
+    font-size: 10px;
+    transform: rotate(90deg);
+}
+
+.mainUL li:hover{
+    background-color: #585a5e;
+    cursor: pointer;
+}
+
+.contriesLI{
+    position: relative;
+}
+
+li label{
+    display: block;
+} 

@@ -53,12 +53,13 @@ onAddFiles = () => {
             output.innerHTML = "Please select a file";
         }
     }
+    addLabelList();
 }
 
 
 viewData = ()=>{
     if (viewOutput !== ""){
-        console.log(viewOutput);
+        // console.log(viewOutput);
         var splitted = viewOutput.split("\n");
         let splittedChildComma = [];
         splitted.forEach((splittedChild)=>{
@@ -83,6 +84,26 @@ viewData = ()=>{
     viewOutput = "";
 }
 
+
+
+addLabelList = () => {
+    var nchild = document.getElementById("countriesUl");
+    var newCountry = document.createElement("li");
+    var countryDiv = document.createElement("div");
+    newCountry.setAttribute("id","countrySub");
+    inputNames.forEach((name)=>{
+        var newLabel = document.createElement("label");
+        var checkInput = document.createElement("input");
+        checkInput.setAttribute("type","checkbox");
+        newLabel.appendChild(checkInput);
+        newLabel.appendChild(document.createTextNode(name));
+        countryDiv.appendChild(newLabel);
+    });
+    newCountry.appendChild(countryDiv);
+    nchild.insertBefore(newCountry,nchild.childNodes[2]);
+    console.log("expand countries clicked");
+    document.getElementById("countrySub").style.display = "none";
+}
 
 
 

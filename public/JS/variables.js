@@ -6,3 +6,4 @@ var viewOutput = "";
 var output = document.getElementById("out"); //Variable to show output data
 var copyArray = [];
 var header = [];
+var countryList = false;
