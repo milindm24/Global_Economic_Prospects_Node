@@ -179,3 +179,7 @@ th{
 li label{
     display: block;
 } 
+
+#sliderValue, #sliderValue2 {
+    display: inline;
+}

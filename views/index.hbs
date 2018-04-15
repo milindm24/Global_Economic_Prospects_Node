@@ -12,6 +12,7 @@
         <input id="csv" type="file" onchange="onChooseFile()" multiple /> <label for="csv" class="file-upload">Choose files</label>
         <button onclick="onAddFiles()"> ADD files </button>
         <button onclick="viewData()"> View Table </button>
+        <button onclick="createObjectFromArray()"> createObjectFromArray </button>
         <button> View Charts </button>
     </header>        
         <div class="leftNav">
@@ -20,14 +21,25 @@
                     Select Countries
                     <span class="arrow" id="arrow">&#10148;</span>
                 </li>
-                {{!-- <li>
-                    <div class="countrySub">
-                        <label><input type="checkbox" value="checkbox">check here</label>
-                        <input type="checkbox"> <label>check here</label>
-                        <input type="checkbox"> <label>check here</label>
-                    </div>
-                </li> --}}
                 <li id="chartType">Select Chart types<span class="arrow" id="arrow">&#10148;</span></li>
+                <li id="sliderDisplay" onclick="expandSliders()">Select year range<span class="arrow" id="arrow-slider">&#10148;</span></li>
+                <li id="slider">
+                    <input type="range" min="1961" max="2016" id="range-slider" oninput="showVal(this.value)">
+                    <span id="sliderValue"></span>
+                    <input type="range" min="1961" max="2016" id="range-slider2" oninput="showVal2(this.value)" value="2016">
+                    <span id="sliderValue2"></span>
+                    <script>
+                        document.getElementById("slider").style.display = "none";                        
+                        document.getElementById("sliderValue").innerHTML = " 1961";
+                        document.getElementById("sliderValue2").innerHTML = " 2016";
+                        showVal = (value) => {
+                        document.getElementById("sliderValue").innerHTML = " " + value;
+                        }
+                        showVal2 = (value) => {
+                        document.getElementById("sliderValue2").innerHTML = " " + value;
+                        }
+                    </script>
+                </li>
             </ul>
         </div>
         <div class="tableContainer">
