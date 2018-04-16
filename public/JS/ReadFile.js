@@ -52,12 +52,15 @@ onAddFiles = () => {
             output.innerHTML = "Please select a file";
         }
     }
-    addLabelList();
+    setTimeout(()=>{
+        createObjectFromArray();                
+        addLabelList();
+    },1000); 
 }
 
 
 createObjectFromArray = ()=>{
-    console.log("create object");
+    // console.log("create object");
     let splittedChildComma = [];
     var legends = [];
     var dataObject;
@@ -77,42 +80,10 @@ createObjectFromArray = ()=>{
         }
         mainArray = legends;
         copyArray = mainArray;
-        console.log(copyArray);
+        // console.log(copyArray);
 }
 
-
-
-// viewData = ()=>{
-//     if (viewOutput !== ""){
-//         // console.log(viewOutput);
-//         var splitted = viewOutput.split("\n");
-//         let splittedChildComma = [];
-//         splitted.forEach((splittedChild)=>{
-//             splittedChildComma.push(splittedChild.split(","));
-//         });
-//         var tbdy = document.createElement('tbody');
-//         document.getElementById("myTable").appendChild(tbdy);    
-//         for (var j=0; j<splittedChildComma.length;j++){
-//         var tr = document.createElement('tr');    
-//         tbdy.appendChild(tr);
-//         for(var i=0;i<splittedChildComma[0].length;i++){
-//             var td = document.createElement('td');
-//             td.appendChild(document.createTextNode(splittedChildComma[j][i]));
-//             tr.appendChild(td);
-//             td.setAttribute("nowrap","nowrap");                
-//         }
-//     }
-//     // document.getElementById("myTable").tHead.style.position = "fixed";
-// }else {
-//     output.innerHTML = "Please select other files";
-// }
-//     viewOutput = "";
-// }
-
-
-
 viewData = ()=>{
-    createObjectFromArray();
     var tableVar = document.getElementById("tableBody");
     if (viewOutput){
         if(tableVar){
@@ -128,25 +99,36 @@ viewData = ()=>{
             var td = document.createElement('td');
             td.appendChild(document.createTextNode(copyArray[j].data[i]));
             tr.appendChild(td);
+            tr.setAttribute("class",copyArray[j].country);
             td.setAttribute("nowrap","nowrap");             
         }
     }
 }else {
     output.innerHTML = "Please select other files";
 }
-    viewOutput = false;
+    // viewOutput = false;
 }
 
 
 addLabelList = () => {
+    var countrySub = document.getElementById("countrySub");
+    if (countrySub){
+        document.getElementById("countrySub").remove();
+    }
     var nchild = document.getElementById("countriesUl");
     var newCountry = document.createElement("li");
     var countryDiv = document.createElement("div");
     newCountry.setAttribute("id","countrySub");
-    inputNames.forEach((name)=>{
+    console.log(outarray);
+    outarray.forEach(({name,data})=>{
         var newLabel = document.createElement("label");
         var checkInput = document.createElement("input");
         checkInput.setAttribute("type","checkbox");
+        checkInput.setAttribute("value",name);
+        var dataId = data.split(",");
+        checkInput.setAttribute("id",name);
+        checkInput.setAttribute("name","countries");
+        checkInput.setAttribute("onclick",`onCheckCountry(this.id,'${dataId.splice(0,1)}')`);
         newLabel.appendChild(checkInput);
         newLabel.appendChild(document.createTextNode(name));
         countryDiv.appendChild(newLabel);
@@ -158,6 +140,24 @@ addLabelList = () => {
     document.getElementById("countrySub").style.display = "none";
 }
 
+
+onCheckCountry = (checkid,className)=>{
+    if (document.getElementById(checkid).checked){
+
+        var countryClass = document.getElementsByClassName(className);
+        for (var i=0; i<countryClass.length;i++){
+            countryClass[i].style.display = "";
+        }
+    }else {
+        console.log(className);
+
+        var countryClass = document.getElementsByClassName(className);
+        for (var i=0; i<countryClass.length;i++){
+            countryClass[i].style.display = "none";
+        }
+    }
+}
+   
 
 
 

@@ -9,3 +9,4 @@ var copyArray = [];
 var header = [];
 var countryList = false;
 var sliderList = false;
+var checkCountry = false;
