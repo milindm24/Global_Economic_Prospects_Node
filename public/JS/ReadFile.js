@@ -162,8 +162,20 @@ onCheckCountry = (checkid,className)=>{
 }
    
 
-onClickFilter = (value)=>{
-    
+onClickFilter = (value,id)=>{
+    console.log(value + " " + id);
+    var checkIndicator = document.getElementById(id).checked;
+    if (checkIndicator){
+        var countryClass = document.getElementsByClassName(value);
+        for (var i=0; i<countryClass.length;i++){
+            countryClass[i].style.display = "";
+        }
+    }else {
+        var countryClass = document.getElementsByClassName(value);
+        for (var i=0; i<countryClass.length;i++){
+            countryClass[i].style.display = "none";
+        }
+    }
 }
 
 
