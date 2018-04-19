@@ -20,3 +20,27 @@ expandSliders = ()=>{
         document.getElementById("arrow-slider").style.transform = "rotate(90deg)";        
     }
 }
+
+
+expandCharts = ()=>{
+    chartList = !chartList;
+    if (chartList){
+        document.getElementById("chartSubType").style.display = "";
+        document.getElementById("arrow-chart").style.transform = "rotate(270deg)";
+    }else {
+        document.getElementById("chartSubType").style.display = "none";
+        document.getElementById("arrow-chart").style.transform = "rotate(90deg)";        
+    }
+}
+
+
+onfilterRows = ()=>{
+    rowList = !rowList;
+    if (rowList){
+        document.getElementById("rowFilter").style.display = "";
+        document.getElementById("arrow-filter").style.transform = "rotate(270deg)";
+    }else {
+        document.getElementById("rowFilter").style.display = "none";
+        document.getElementById("arrow-filter").style.transform = "rotate(90deg)";        
+    }
+}

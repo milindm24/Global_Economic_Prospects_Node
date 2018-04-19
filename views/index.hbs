@@ -12,7 +12,6 @@
         <input id="csv" type="file" onchange="onChooseFile()" multiple /> <label for="csv" class="file-upload">Choose files</label>
         <button onclick="onAddFiles()"> ADD files </button>
         <button onclick="viewData()"> View Table </button>
-        <button onclick="createObjectFromArray()"> createObjectFromArray </button>
         <button> View Charts </button>
     </header>        
         <div class="leftNav">
@@ -21,14 +20,91 @@
                     Select Countries
                     <span class="arrow" id="arrow">&#10148;</span>
                 </li>
-                <li id="chartType">Select Chart types<span class="arrow" id="arrow">&#10148;</span></li>
+                <li id="chartType" onclick="expandCharts()">
+                    Select Chart types<span class="arrow" id="arrow-chart">&#10148;</span></li>
+                <li id="chartSubType">
+                    <div>
+                        <label><input type="checkbox" name="charttype" value="Bar" id="barchart">Bar</label>
+                        <label><input type="checkbox" name="charttype" value="Line" id="linechart">Line</label>
+                        <label><input type="checkbox" name="charttype" value="HBar" id="Hbarchart">Horizontal Bar</label>
+                        <label><input type="checkbox" name="charttype" value="GBar" id="Gbarchart">Grouped Bar</label>
+                    </div>
+                </li>
                 <li id="sliderDisplay" onclick="expandSliders()">Select year range<span class="arrow" id="arrow-slider">&#10148;</span></li>
                 <li id="slider">
                     <input type="range" min="1961" max="2016" id="range-slider" oninput="showVal(this.value)">
                     <span id="sliderValue"></span>
                     <input type="range" min="1961" max="2016" id="range-slider2" oninput="showVal2(this.value)" value="2016">
                     <span id="sliderValue2"></span>
-                    <script>
+                </li>
+                <li onclick="onfilterRows()">Filter Rows<span class="arrow" id="arrow-filter">&#10148;</span></li>
+                <li id="rowFilter">
+                    <div>
+                        <label><input type="checkbox" name="filter" 
+                        value="Exports of goods and services (% of GDP)"
+                        onclick="onClickFilter(this.value)" id="exgoodGDP" checked>
+                        Exports of goods and services (% of GDP)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="Exports of goods and services (annual % growth)"
+                        onclick="onClickFilter(this.value)" id="exgoodGrw" checked>
+                        Exports of goods and services (annual % growth)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="Exports of goods and services (current US$)"
+                        onclick="onClickFilter(this.value)" id="exgoodUsd" checked>
+                        Exports of goods and services (current US$)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GDP (current US$)"
+                        onclick="onClickFilter(this.value)" id="gdpUsd" checked>
+                        GDP (current US$)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GDP growth (annual %)"
+                        onclick="onClickFilter(this.value)" id="gdpGrw" checked>
+                        GDP growth (annual %)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GDP per capita (current US$)"
+                        onclick="onClickFilter(this.value)" id="gdpCap" checked>
+                        GDP per capita (current US$)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GDP per capita growth (annual %)"
+                        onclick="onClickFilter(this.value)" id="gdpCapGrw" checked>                       
+                        GDP per capita growth (annual %)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GNI growth (annual %)"
+                        onclick="onClickFilter(this.value)" id="gniGrw" checked>
+                        GNI growth (annual %)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="GNI per capita growth (annual %)"
+                        onclick="onClickFilter(this.value)" id="gniCapGrw" checked>
+                        GNI per capita growth (annual %)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="Imports of goods and services (% of GDP)"
+                        onclick="onClickFilter(this.value)" id="impGoodGdp" checked>
+                        Imports of goods and services (% of GDP)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="Imports of goods and services (annual % growth)"
+                        onclick="onClickFilter(this.value)" id="impGoodGrw" checked>
+                        Imports of goods and services (annual % growth)
+                        </label>
+                        <label><input type="checkbox" name="filter" 
+                        value="Imports of goods and services (current US$)"
+                        onclick="onClickFilter(this.value)" id="impGoodUsd" checked>
+                        Imports of goods and services (current US$)
+                        </label>
+                    </div>
+                </li>
+                <script>
+                        document.getElementById("rowFilter").style.display = "none";                        
+                        document.getElementById("chartSubType").style.display = "none";                        
                         document.getElementById("slider").style.display = "none";                        
                         document.getElementById("sliderValue").innerHTML = " 1961";
                         document.getElementById("sliderValue2").innerHTML = " 2016";
@@ -39,7 +115,6 @@
                         document.getElementById("sliderValue2").innerHTML = " " + value;
                         }
                     </script>
-                </li>
             </ul>
         </div>
         <div class="tableContainer">

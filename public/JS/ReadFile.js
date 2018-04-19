@@ -17,7 +17,7 @@ onAddFiles = () => {
                 viewOutput = true;                
         }, false);
             reader.readAsBinaryString(fileInput[i]);
-            output.innerHTML += `${fileInput[i].name} Added ` ;            
+            output.innerHTML += `${fileInput[i].name} Added `;            
         }
     }
    
@@ -79,11 +79,15 @@ createObjectFromArray = ()=>{
             data: splittedChildComma[i].data});
         }
         mainArray = legends;
-        copyArray = mainArray;
         // console.log(copyArray);
 }
 
+
+
+
+
 viewData = ()=>{
+    copyArray = mainArray;
     var tableVar = document.getElementById("tableBody");
     if (viewOutput){
         if(tableVar){
@@ -99,7 +103,7 @@ viewData = ()=>{
             var td = document.createElement('td');
             td.appendChild(document.createTextNode(copyArray[j].data[i]));
             tr.appendChild(td);
-            tr.setAttribute("class",copyArray[j].country);
+            tr.setAttribute("class",copyArray[j].country + " "+ copyArray[j].indicator.replace(/ /g,"_"));
             td.setAttribute("nowrap","nowrap");             
         }
     }
@@ -136,7 +140,6 @@ addLabelList = () => {
     });
     newCountry.appendChild(countryDiv);
     nchild.insertBefore(newCountry,nchild.childNodes[2]);
-    console.log("expand countries clicked");
     document.getElementById("countrySub").style.display = "none";
 }
 
@@ -159,5 +162,8 @@ onCheckCountry = (checkid,className)=>{
 }
    
 
+onClickFilter = (value)=>{
+    
+}
 
 

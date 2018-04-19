@@ -183,3 +183,9 @@ li label{
 #sliderValue, #sliderValue2 {
     display: inline;
 }
+
+
+#rowFilter div{
+    font-size: 12px;
+    padding-right: 12px;
+}
