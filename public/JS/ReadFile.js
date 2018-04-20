@@ -79,6 +79,7 @@ createObjectFromArray = ()=>{
             data: splittedChildComma[i].data});
         }
         mainArray = legends;
+        copyArray = mainArray;
         // console.log(copyArray);
 }
 
@@ -87,7 +88,6 @@ createObjectFromArray = ()=>{
 
 
 viewData = ()=>{
-    copyArray = mainArray;
     var tableVar = document.getElementById("tableBody");
     if (viewOutput){
         if(tableVar){
@@ -176,6 +176,36 @@ onClickFilter = (value,id)=>{
             countryClass[i].style.display = "none";
         }
     }
+}
+
+
+onFilterColumns = ()=>{
+    var slider1 = document.getElementById("sliderValue").innerHTML;
+    var slider2 = document.getElementById("sliderValue2").innerHTML;
+    var startPos = slider1 - 1961;
+    var endPos =  55-(2016 - slider2);
+    var mainIndicator = headerArray.slice(0,3);
+    if (slider1 < slider2){
+        var header = headerArray.slice(startPos+3,endPos+4);
+    }else {
+        var header = headerArray.slice(endPos+3,startPos+4);
+    }
+
+    for (var j=0; j<mainArray.length;j++){
+            var copyArraySlice = mainArray[j].data.slice(startPos+3,endPos+4);
+            copyArray[j].data = [mainArray[j].data[0],mainArray[j].data[1],mainArray[j].data[2],...copyArraySlice]
+        }
+
+
+
+    console.log(mainArray);
+    console.log(headerArray);
+    headerCreate([...mainIndicator,...header]);
+    viewData();
+
+
+
+
 }
 
 
