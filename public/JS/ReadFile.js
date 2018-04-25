@@ -220,10 +220,7 @@ onFilterColumns = ()=>{
     // console.log(headerArray);
     headerCreate([...mainIndicator,...header]);
     viewData(sliceMainArray);
-
-
-
-
+    // onViewChart(sliceMainArray);
 }
 
 
