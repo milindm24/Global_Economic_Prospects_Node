@@ -13,6 +13,7 @@
         <button onclick="onAddFiles()"> ADD files </button>
         <button onclick="viewData()"> View Table </button>
         <button onclick="onViewChart()"> View Charts </button>
+        <button onclick="onShowStats()"> View Stats </button>
     </header>        
         <div class="leftNav">
             <ul class="mainUL" id="countriesUl">
@@ -24,10 +25,10 @@
                     Select Chart types<span class="arrow" id="arrow-chart">&#10148;</span></li>
                 <li id="chartSubType">
                     <div>
-                        <label><input type="radio" name="charttype" value="bar" id="bar" onclick="onViewChart(this.value)">Bar</label>
-                        <label><input type="radio" name="charttype" value="line" id="line" onclick="onViewChart(this.value)">Line</label>
-                        <label><input type="radio" name="charttype" value="horizontalBar" id="horizontalBar" onclick="onViewChart(this.value)">Horizontal Bar</label>
-                        <label><input type="radio" name="charttype" value="radar" id="radar" onclick="onViewChart(this.value)">Radar</label>
+                        <label><input type="radio" name="charttype" value="bar" id="bar" onclick="onFilterColumns(this.value)">Bar</label>
+                        <label><input type="radio" name="charttype" value="line" id="line" onclick="onFilterColumns(this.value)">Line</label>
+                        <label><input type="radio" name="charttype" value="horizontalBar" id="horizontalBar" onclick="onFilterColumns(this.value)">Horizontal Bar</label>
+                        <label><input type="radio" name="charttype" value="radar" id="radar" onclick="onFilterColumns(this.value)">Radar</label>
                     </div>
                 </li>
                 <li id="sliderDisplay" onclick="expandSliders()">Select year range<span class="arrow" id="arrow-slider">&#10148;</span></li>
@@ -103,10 +104,23 @@
                         </label>
                     </div>
                 </li>
+                <li id="stats" onclick="expandStats()">
+                    Show Stats
+                    <span class="arrow" id="arrow-stats">&#10148;</span>
+                </li>
+                <li id="statsSub">
+                    <div>
+                        <label><input type="checkBox" id="min" value="min" name="stats" onclick="onViewChart(this.value)">Min</label>
+                        <label><input type="checkBox" id="max" value="max" name="stats" onclick="onViewChart(this.value)">Max</label>
+                        <label><input type="checkBox" id="avg" value="avg" name="stats" onclick="onViewChart(this.value)">Average</label>
+                        <label><input type="checkBox" id="median" value="median" name="stats" onclick="onViewChart(this.value)">Median</label>
+                    </div>
+                </li>
                 <script>
                         document.getElementById("rowFilter").style.display = "none";                        
                         document.getElementById("chartSubType").style.display = "none";                        
                         document.getElementById("slider").style.display = "none";                        
+                        document.getElementById("statsSub").style.display = "none";                        
                         document.getElementById("sliderValue").innerHTML = " 1961";
                         document.getElementById("sliderValue2").innerHTML = " 2016";
                         showVal = (value) => {

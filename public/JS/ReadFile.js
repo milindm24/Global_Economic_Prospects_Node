@@ -111,6 +111,7 @@ viewData = (sliceMainArray)=>{
                 td.setAttribute("nowrap","nowrap");             
             }
         }else {
+            headerCreate(headerArray);
             for(var i=0;i< copyArray[j].data.length;i++){
                 var td = document.createElement('td');
                 td.appendChild(document.createTextNode(copyArray[j].data[i]));
@@ -181,11 +182,13 @@ onClickFilter = (value,id)=>{
     var checkIndicator = document.getElementById(id).checked;
     if (checkIndicator){
         var countryClass = document.getElementsByClassName(value);
+        // document.getElementById(value).style.display = "";
         for (var i=0; i<countryClass.length;i++){
             countryClass[i].style.display = "";
         }
     }else {
         var countryClass = document.getElementsByClassName(value);
+        // document.getElementById(value).style.display = "none";        
         for (var i=0; i<countryClass.length;i++){
             countryClass[i].style.display = "none";
         }
@@ -193,7 +196,7 @@ onClickFilter = (value,id)=>{
 }
 
 
-onFilterColumns = ()=>{
+onFilterColumns = (type="bar")=>{
     var slider1 = document.getElementById("sliderValue").innerHTML;
     var slider2 = document.getElementById("sliderValue2").innerHTML;
     var startPos = slider1 - 1961;
@@ -226,8 +229,16 @@ onFilterColumns = ()=>{
     console.log(sliceMainArray);
     // console.log(headerArray);
     headerCreate([...mainIndicator,...header]);
+    console.log( document.getElementById("myChartDiv").style.display);
+    if ( document.getElementById("myChartDiv").style.display === ""){
+    onViewChart(chartArray,[...mainIndicator,...header],type);        
+    }else 
     viewData(sliceMainArray);
-     onViewChart(chartArray,[...mainIndicator,...header],"bar");
+   
 }
 
+
+onShowStats = ()=>{
+
+}
 

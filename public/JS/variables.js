@@ -11,4 +11,5 @@ var countryList = false;
 var sliderList = false;
 var chartList = false;
 var rowList = false;
+var statsList = false;
 var checkCountry = false;

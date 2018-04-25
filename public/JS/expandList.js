@@ -44,3 +44,16 @@ onfilterRows = ()=>{
         document.getElementById("arrow-filter").style.transform = "rotate(90deg)";        
     }
 }
+
+
+expandStats = ()=>{
+    statsList = !statsList;
+    if (statsList){
+        document.getElementById("statsSub").style.display = "";
+        document.getElementById("arrow-stats").style.transform = "rotate(270deg)";
+    }else {
+        document.getElementById("statsSub").style.display = "none";
+        document.getElementById("arrow-stats").style.transform = "rotate(90deg)";        
+    }
+}
+
