@@ -1,4 +1,4 @@
-onViewChart = (chartType="bar")=>{
+onViewChart = (chartArray=copyArray,chartHeader=headerArray,chartType="bar")=>{
     var dataset = [];
     var data=[];
     var indicators = ['Exports of goods and services (% of GDP)',
@@ -14,7 +14,7 @@ onViewChart = (chartType="bar")=>{
     'Imports of goods and services (annual % growth)',
     'Imports of goods and services (current US$)'
     ];
-
+    document.getElementById("myChartDiv").style.display = "";    
     randomcolor = (chartType) =>{
         var R = Math.floor(Math.random() * 255);
         var G = Math.floor(Math.random() * 255);
@@ -33,15 +33,15 @@ onViewChart = (chartType="bar")=>{
     
     for (var j=0; j<indicators.length;j++){
         data.push({indicator: indicators[j],data: []});
-        for(var i=0; i<copyArray.length; i++){
-            if (indicators[j]===copyArray[i].indicator)
+        for(var i=0; i<chartArray.length; i++){
+            if (indicators[j]===chartArray[i].indicator)
             data[0].data.push({
-                label: copyArray[i].country,
-                data: copyArray[i].data.slice(3)
+                label: chartArray[i].country,
+                data: chartArray[i].data.slice(3)
                 , backgroundColor: randomcolor(chartType)
             });
         }
-        new ViewChart(data, chartType);
+        new ViewChart(data, chartType, chartHeader);
         data = [];
     }
 
@@ -50,16 +50,21 @@ onViewChart = (chartType="bar")=>{
 
 class ViewChart{
 
-    constructor(dataset,type){
+    constructor(dataset,type, chartHeader){
         document.getElementById("tableContainer").style.display = "none";
         var divEle = document.getElementById("myChartDiv");
         var ctx = document.createElement("canvas");
-        ctx.setAttribute("id",dataset[0].indicator.replace(/ /g,"_"));
+        var h3 = document.createElement("h3");
+        var hr = document.createElement("hr");
+        h3.innerHTML = dataset[0].indicator;
+        ctx.setAttribute("id",dataset[0].indicator.replace(/ /g,"_"));     
+        divEle.appendChild(h3);
         divEle.appendChild(ctx);
+        divEle.appendChild(hr);   
     var myChart = new Chart(ctx, {
         type: type,
         data: {
-            labels: headerArray.slice(3),
+            labels: chartHeader.slice(3),
             datasets: dataset[0].data
         },
         options: {
