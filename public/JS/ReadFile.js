@@ -79,7 +79,8 @@ createObjectFromArray = ()=>{
             data: splittedChildComma[i].data});
         }
         mainArray = legends;
-        copyArray = mainArray;
+        copyArray = mainArray.slice(0);
+        console.log(mainArray);
         // console.log(copyArray);
 }
 
@@ -87,7 +88,8 @@ createObjectFromArray = ()=>{
 
 
 
-viewData = ()=>{
+viewData = (sliceMainArray)=>{
+    document.getElementById("tableContainer").style.display = "";
     var tableVar = document.getElementById("tableBody");
     if (viewOutput){
         if(tableVar){
@@ -99,13 +101,24 @@ viewData = ()=>{
         for (var j=0; j<copyArray.length;j++){
         var tr = document.createElement('tr');    
         tbdy.appendChild(tr);
-        for(var i=0;i<copyArray[j].data.length;i++){
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode(copyArray[j].data[i]));
-            tr.appendChild(td);
-            tr.setAttribute("class",copyArray[j].country + " "+ copyArray[j].indicator.replace(/ /g,"_"));
-            td.setAttribute("nowrap","nowrap");             
+        if (typeof sliceMainArray != 'undefined'){
+            for(var i=0;i< sliceMainArray[j].length;i++){
+                var td = document.createElement('td');
+                td.appendChild(document.createTextNode(sliceMainArray[j][i]));
+                tr.appendChild(td);
+                tr.setAttribute("class",copyArray[j].country + " "+ copyArray[j].indicator.replace(/ /g,"_"));
+                td.setAttribute("nowrap","nowrap");             
+            }
+        }else {
+            for(var i=0;i< copyArray[j].data.length;i++){
+                var td = document.createElement('td');
+                td.appendChild(document.createTextNode(copyArray[j].data[i]));
+                tr.appendChild(td);
+                tr.setAttribute("class",copyArray[j].country + " "+ copyArray[j].indicator.replace(/ /g,"_"));
+                td.setAttribute("nowrap","nowrap");             
+            }
         }
+       
     }
 }else {
     output.innerHTML = "Please select other files";
@@ -184,24 +197,29 @@ onFilterColumns = ()=>{
     var slider2 = document.getElementById("sliderValue2").innerHTML;
     var startPos = slider1 - 1961;
     var endPos =  55-(2016 - slider2);
+    var sliceMainArray=[];
     var mainIndicator = headerArray.slice(0,3);
     if (slider1 < slider2){
         var header = headerArray.slice(startPos+3,endPos+4);
+        for (var j=0; j<copyArray.length;j++){
+            let copyArraySlice = copyArray[j].data.slice(startPos+3,endPos+4);
+            sliceMainArray.push([copyArray[j].data[0],copyArray[j].data[1],copyArray[j].data[2],...copyArraySlice]);
+            // console.log(copyArraySlice);
+        }
     }else {
         var header = headerArray.slice(endPos+3,startPos+4);
+        for (var j=0; j<copyArray.length;j++){
+            let copyArraySlice = copyArray[j].data.slice(endPos+3,startPos+4);
+            sliceMainArray.push([copyArray[j].data[0],copyArray[j].data[1],copyArray[j].data[2],...copyArraySlice]);
+            // console.log(copyArraySlice);
+        }
     }
 
-    for (var j=0; j<mainArray.length;j++){
-            var copyArraySlice = mainArray[j].data.slice(startPos+3,endPos+4);
-            copyArray[j].data = [mainArray[j].data[0],mainArray[j].data[1],mainArray[j].data[2],...copyArraySlice]
-        }
 
-
-
-    console.log(mainArray);
-    console.log(headerArray);
+    console.log(sliceMainArray);
+    // console.log(headerArray);
     headerCreate([...mainIndicator,...header]);
-    viewData();
+    viewData(sliceMainArray);
 
 
 

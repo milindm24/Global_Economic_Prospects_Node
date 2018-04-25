@@ -12,7 +12,7 @@
         <input id="csv" type="file" onchange="onChooseFile()" multiple /> <label for="csv" class="file-upload">Choose files</label>
         <button onclick="onAddFiles()"> ADD files </button>
         <button onclick="viewData()"> View Table </button>
-        <button> View Charts </button>
+        <button onclick="onViewChart()"> View Charts </button>
     </header>        
         <div class="leftNav">
             <ul class="mainUL" id="countriesUl">
@@ -24,10 +24,10 @@
                     Select Chart types<span class="arrow" id="arrow-chart">&#10148;</span></li>
                 <li id="chartSubType">
                     <div>
-                        <label><input type="checkbox" name="charttype" value="Bar" id="barchart">Bar</label>
-                        <label><input type="checkbox" name="charttype" value="Line" id="linechart">Line</label>
-                        <label><input type="checkbox" name="charttype" value="HBar" id="Hbarchart">Horizontal Bar</label>
-                        <label><input type="checkbox" name="charttype" value="GBar" id="Gbarchart">Grouped Bar</label>
+                        <label><input type="radio" name="charttype" value="bar" id="bar" onclick="onViewChart(this.value)">Bar</label>
+                        <label><input type="radio" name="charttype" value="line" id="line" onclick="onViewChart(this.value)">Line</label>
+                        <label><input type="radio" name="charttype" value="horizontalBar" id="horizontalBar" onclick="onViewChart(this.value)">Horizontal Bar</label>
+                        <label><input type="radio" name="charttype" value="radar" id="radar" onclick="onViewChart(this.value)">Radar</label>
                     </div>
                 </li>
                 <li id="sliderDisplay" onclick="expandSliders()">Select year range<span class="arrow" id="arrow-slider">&#10148;</span></li>
@@ -118,14 +118,14 @@
                     </script>
             </ul>
         </div>
-        <div class="tableContainer">
+        <div class="tableContainer" id="tableContainer">
             <table id="myTable">
             </table>
         </div>
+       {{> chart }}
     </body>
     <script src="./JS/variables.js" type="text/javascript"></script> 
     <script src="./JS/loadHeader.js" type="text/javascript"></script>    
     <script src="./JS/ReadFile.js" type="text/javascript"></script>           
     <script src="./JS/expandList.js" type="text/javascript"></script>           
-    <script src="https://cdn.rawgit.com/Gmousse/dataframe-js/master/dist/dataframe-min.js"></script>
 </html>

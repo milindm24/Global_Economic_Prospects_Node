@@ -2,7 +2,7 @@
     font-family: Helvetica, sans-serif;
 }
 
-.tableContainer{
+#tableContainer,#myChartDiv{
     /* display: inline-block; */
     overflow: scroll;
     width:85%;
